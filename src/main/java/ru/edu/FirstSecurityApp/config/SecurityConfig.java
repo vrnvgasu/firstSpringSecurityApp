@@ -56,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// настройка прав на просмотр ендпоинтов
 				.authorizeRequests()
-				.antMatchers("/auth/login", "/error").permitAll() // на страницу аутентификации и ошибки пускам всех
+				// на страницу аутентификации, регистрации и ошибки пускам всех
+				.antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
 				.anyRequest().authenticated() // на все остальное пускаем только аутентифицированных
 
 				.and() // соединяет разные части настроек
