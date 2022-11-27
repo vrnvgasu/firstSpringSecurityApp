@@ -7,6 +7,10 @@
 <body>
 
 <form name="f" method="post" action="/process_login">
+  <!--для защиты от атаки csrf-->
+  <!--Нужно только для login! Для всех остальных форм thymeleaf подставит автоматом. Магия-->
+  <input type="hidden" th:name="${_csrf.getParameterName()}" th:value="${_csrf.token}">
+
   <label for="username">Имя пользователя:</label>
   <input type="text" name="username" id="username">
   <br>

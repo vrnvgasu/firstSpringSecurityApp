@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// пока не передаем csrf токен с фронта
 				// отключаем защиту от межсайтовой подделки запросов
-				.csrf().disable()
+//				.csrf().disable()
 
 				// настройка прав на просмотр ендпоинтов
 				.authorizeRequests()
