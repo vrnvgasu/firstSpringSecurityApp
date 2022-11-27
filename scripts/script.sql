@@ -9,3 +9,9 @@ create table person
 insert into person (username, year_of_birth, password)
 values ('user1', 1960, 'password1'),
        ('user2', 1960, 'password2');
+
+truncate table person;
+alter table person add column role varchar(100) not null;
+insert into person (username, year_of_birth, password, role)
+values ('test', 1960, '$2a$10$oZqH6zbnTabSIRsueuBg/.Dv4I1ALlHLt0SyjrxANcf29P1rDFoiW', 'ROLE_USER'),
+       ('admin', 1961, '$2a$10$oZqH6zbnTabSIRsueuBg/.Dv4I1ALlHLt0SyjrxANcf29P1rDFoiW', 'ROLE_ADMIN');

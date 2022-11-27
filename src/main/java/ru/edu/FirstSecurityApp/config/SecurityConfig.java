@@ -57,9 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// настройка прав на просмотр ендпоинтов
 				.authorizeRequests()
+				.antMatchers("/admin").hasRole("ADMIN")
 				// на страницу аутентификации, регистрации и ошибки пускам всех
 				.antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
-				.anyRequest().authenticated() // на все остальное пускаем только аутентифицированных
+				.anyRequest().hasAnyRole("USER", "ADMIN")
+//				.anyRequest().authenticated() // на все остальное пускаем только аутентифицированных
 
 				.and() // соединяет разные части настроек
 

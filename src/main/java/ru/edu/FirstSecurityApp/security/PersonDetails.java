@@ -1,7 +1,9 @@
 package ru.edu.FirstSecurityApp.security;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.edu.FirstSecurityApp.models.Person;
 
@@ -15,9 +17,11 @@ public class PersonDetails implements UserDetails {
 		this.person = person;
 	}
 
+	// получаем роли и действия пользователя
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		// передаем строку роли или действия (пока храним только 1 роль)
+		return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
 	}
 
 	@Override
