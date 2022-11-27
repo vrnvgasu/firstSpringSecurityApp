@@ -3,6 +3,7 @@ package ru.edu.FirstSecurityApp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.edu.FirstSecurityApp.services.PersonDetailsService;
 
 @EnableWebSecurity  // конфиг для Spring Security
+@EnableGlobalMethodSecurity(prePostEnabled = true) // для возможности регулировать доступ в коде без конфига
 // в version 3.0.0 WebSecurityConfigurerAdapter - вырезали
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -57,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// настройка прав на просмотр ендпоинтов
 				.authorizeRequests()
-				.antMatchers("/admin").hasRole("ADMIN")
+//				.antMatchers("/admin").hasRole("ADMIN") заблочим доступ в сервисе по роли
 				// на страницу аутентификации, регистрации и ошибки пускам всех
 				.antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
 				.anyRequest().hasAnyRole("USER", "ADMIN")
