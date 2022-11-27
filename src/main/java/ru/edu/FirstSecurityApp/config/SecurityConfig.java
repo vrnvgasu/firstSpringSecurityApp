@@ -66,7 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginPage("/auth/login") // настраиваем форму для входа (ендпоинт)
 				.loginProcessingUrl("/process_login")  // ендпоинт, куда придет логин и пароль. Его даже реализовывать не надо
 				.defaultSuccessUrl("/hello", true) // перенаправление после успешной аутентификации
-				.failureUrl("/auth/login?error "); // перенаправление при ошибке аутентификации
+				.failureUrl("/auth/login?error ") // перенаправление при ошибке аутентификации
+
+				.and()
+				.logout().logoutUrl("/logout")	// удаляем сессию и куки
+				.logoutSuccessUrl("/auth/login");
 	}
 
 }
